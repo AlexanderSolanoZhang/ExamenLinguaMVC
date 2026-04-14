@@ -56,12 +56,11 @@ namespace ExamenLinguaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Titulo,Tipo")] MaterialDidactico materialDidactico)
         {
-            if (ModelState.IsValid)
-            {
+            
                 _context.Add(materialDidactico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(materialDidactico);
         }
 
@@ -93,8 +92,7 @@ namespace ExamenLinguaMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     _context.Update(materialDidactico);
@@ -112,7 +110,7 @@ namespace ExamenLinguaMVC.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(materialDidactico);
         }
 

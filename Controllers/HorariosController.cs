@@ -56,12 +56,11 @@ namespace ExamenLinguaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Dia,HoraInicio")] Horario horario)
         {
-            if (ModelState.IsValid)
-            {
+           
                 _context.Add(horario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(horario);
         }
 
@@ -93,8 +92,7 @@ namespace ExamenLinguaMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     _context.Update(horario);
@@ -112,7 +110,7 @@ namespace ExamenLinguaMVC.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(horario);
         }
 

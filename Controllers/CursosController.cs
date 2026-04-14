@@ -56,13 +56,12 @@ namespace ExamenLinguaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Idioma,Costo")] Curso curso)
         {
-            if (ModelState.IsValid)
-            {
+            
                 _context.Add(curso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(curso);
+            
+            
         }
 
         // GET: Cursos/Edit/5
@@ -93,8 +92,7 @@ namespace ExamenLinguaMVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     _context.Update(curso);
@@ -112,7 +110,7 @@ namespace ExamenLinguaMVC.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(curso);
         }
 
