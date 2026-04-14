@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace ExamenLinguaMVC.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class NivelesController : Controller
     {
-        [Authorize(Roles = "Administrador")]
         private readonly ApplicationDbContext _context;
 
         public NivelesController(ApplicationDbContext context)
@@ -58,11 +58,12 @@ namespace ExamenLinguaMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre")] Nivel nivel)
         {
-           
+            if (ModelState.IsValid)
+            {
                 _context.Add(nivel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            
+            }
             return View(nivel);
         }
 
@@ -94,7 +95,8 @@ namespace ExamenLinguaMVC.Controllers
                 return NotFound();
             }
 
-            
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     _context.Update(nivel);
@@ -112,7 +114,7 @@ namespace ExamenLinguaMVC.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            
+            }
             return View(nivel);
         }
 

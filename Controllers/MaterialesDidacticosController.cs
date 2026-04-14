@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 
 namespace ExamenLinguaMVC.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class MaterialesDidacticosController : Controller
     {
-        [Authorize(Roles = "Administrador")]
+        
         private readonly ApplicationDbContext _context;
 
         public MaterialesDidacticosController(ApplicationDbContext context)
